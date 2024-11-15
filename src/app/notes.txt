@@ -1,0 +1,5 @@
+  const { data: balance, isLoading, isError } = useWalletBalance({
+    chain: BSTChain,
+    address: useActiveAccount()?.address || undefined,
+    client:client,
+  });

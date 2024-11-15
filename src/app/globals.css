@@ -1,0 +1,107 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+	line-height: 1.5;
+	font-weight: 400;
+	font-synthesis: none;
+	text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	font-family: 'Inter', sans-serif;
+	font-optical-sizing: auto;
+	font-style: normal;
+	font-variation-settings: 'slnt' 0;
+}
+
+
+
+@layer base {
+	body {
+		@apply bg-zinc-950 text-neutral-200;
+	}
+}
+
+
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&display=swap');
+
+
+ body, .backdrop-blur-md{
+	background: black;
+    color: white;
+}
+
+.cbtn{
+	color:white!important;
+	font-size: 22px!important;
+}
+
+.boxx{
+	background: black;
+    color: white;
+    border: none!important;
+}
+
+.text-gray-700{
+	color:white;
+}
+.text-gray-800{
+	color:white;
+    font-weight:bolder;
+}
+
+.button{
+	border-radius: 0;
+    background: rgb(220 38 38 / var(--tw-bg-opacity));
+}
+
+.textfield{
+	color:black;
+}
+/* display: flex;
+justify-content: center;
+margin-top: 3rerm;
+align-items: center;
+margin: auto;
+margin-top: 6rem; */
+
+body {
+	/* font-family: Arial, sans-serif; */
+	font-family: 'Outfit', sans-serif!important;
+	background-color:black ;
+	color: white;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	margin: 0;
+	border: 1px solid white;
+	border-radius: 15px;
+  }
+@media(max-width:600px){
+	.cbtn{
+		font-size:25px!important;
+	}
+}
+
+.cs{
+	text-align:center;
+}
+
+/* components/Alert.module.css */
+.alert {
+	padding: 5px;
+	background-color: #f44336; /* Red */
+	color: white;
+	margin-bottom: 15px;
+	margin-top: 15px;
+	border-radius: 5px;
+	text-align: justify;
+  }
+  
+  input{
+
+	outline: none!important;
+	border: none!important;
+  }
