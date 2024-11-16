@@ -1574,7 +1574,7 @@ export default function Home() {
     } catch (error) {
       console.error("Error staking:", error);
       setTransactionHash(null); // Reset transaction hash on error
-      setToastMessage("Staking failed.");
+     
       setShowToast(true);
     } finally {
       setLoading1(false);
