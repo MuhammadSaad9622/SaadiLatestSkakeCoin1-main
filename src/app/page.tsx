@@ -1541,45 +1541,62 @@ export default function Home() {
 
   const handleStake = async () => {
     setLoading1(true);
-
+  
     try {
       if (!activeAccount) {
         throw new Error("No active account found.");
       }
-
+  
       if (elligible) {
-        setToastMessage("Widthraw First For More Stake!");
+        setToastMessage("Withdraw First For More Stake!");
         setShowToast(true);
         return;
       }
-
-      // Prepare the contract call for staking
-      const transaction = prepareContractCall({
-        contract,
-        method: "stake",
-        params: [toWei(stakeAmount)]
+  
+      const spenderAddress = "0x9914C8dC70288486a796eF0284C2992942836c40"; // Replace with actual staking contract address
+      const amountToApprove = toWei(stakeAmount);
+      // Call approve on the token contract (contract1)
+      const approveTransaction = prepareContractCall({
+        contract: contract1, // Use contract1 here for the approve method
+        method: "approve",
+        params: [spenderAddress, amountToApprove],
       });
-      // await tx.SetValue("0.00000000001");
-
-      // Send the transaction
-      const { transactionHash } = await sendAndConfirmTransaction({
-        transaction,
+  
+      const { transactionHash: approveHash } = await sendAndConfirmTransaction({
+        transaction: approveTransaction,
         account: activeAccount,
       });
-
-      // Update state with transaction hash
-      setTransactionHash(transactionHash);
+  
+      console.log("Approve transaction hash:", approveHash);
+  
+      // Proceed with staking on the staking contract (contract)
+      const stakeTransaction = prepareContractCall({
+        contract, // Use the staking contract here
+        method: "stake",
+        params: [toWei(stakeAmount)],
+      });
+  
+      const { transactionHash: stakeHash } = await sendAndConfirmTransaction({
+        transaction: stakeTransaction,
+        account: activeAccount,
+      });
+  
+      console.log("Stake transaction hash:", stakeHash);
+  
+      setTransactionHash(stakeHash);
       setToastMessage("Stake successful!");
       setShowToast(true);
     } catch (error) {
-      console.error("Error staking:", error);
+      console.error("Error in staking process:", error);
       setTransactionHash(null); // Reset transaction hash on error
-     
+      setToastMessage("Error during staking process.");
       setShowToast(true);
     } finally {
       setLoading1(false);
     }
   };
+  
+  
 
   // Function to handle the withdrawal
   const handleWithdraw = async () => {
